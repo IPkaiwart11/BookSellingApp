@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/BookSellingApp/static/js/main.bf7c214f.js",
+    "index.html": "/BookSellingApp/index.html",
+    "main.bf7c214f.js.map": "/BookSellingApp/static/js/main.bf7c214f.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.bf7c214f.js"
+  ]
+}
