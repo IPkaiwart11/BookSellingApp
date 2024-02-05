@@ -24,7 +24,10 @@ mongoose
 app.use(cors({
   origin: 'http://localhost:3000',
   credentials: true,
-  allowedHeaders: ['Content-Type', 'Authorization'], // Add the necessary headers
+  // origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'token'], 
+  // allowedHeaders: ['Content-Type', 'Authorization'], // Add the necessary headers
 }));
 
 
