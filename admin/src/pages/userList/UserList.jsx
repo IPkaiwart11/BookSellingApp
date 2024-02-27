@@ -7,7 +7,7 @@ import { useState } from "react";
 // import axios from 'axios';
 import { NavLink } from "react-router-dom";
 import { useEffect } from "react";
-import { publicRequest } from "../../requestMethods";
+import { publicRequest, userRequest } from "../../requestMethods";
 
 export default function UserList() {
   const [data, setData] = useState([]);
@@ -19,7 +19,7 @@ export default function UserList() {
 
  const fetchData = async () => {
   try {
-    const res = await publicRequest.get("/users");
+    const res = await userRequest.get("/users");
     const formattedData = res.data.map((item) => ({
       ...item,
       id: item._id // Rename _id to id
@@ -38,7 +38,7 @@ export default function UserList() {
   };
   
   const columns = [
-    { field: "id", headerName: "ID", width: 90 },
+    { field: "id", headerName: "ID", width: 300 },
     {
       field: "username",
       headerName: "User",
@@ -66,7 +66,7 @@ export default function UserList() {
     {
       field: "action",
       headerName: "Action",
-      width: 150,
+      width: 300,
       renderCell: (params) => {
         return (
           <>

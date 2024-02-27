@@ -20,8 +20,8 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-  user: userReducer,
-  product: productReducer,
+  user: userReducer ,
+  product: productReducer ,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

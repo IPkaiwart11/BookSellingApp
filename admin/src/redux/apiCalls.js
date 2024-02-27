@@ -17,24 +17,25 @@ import {
 // import axios from 'axios';
 // import { getProductStart, getProductSuccess, getProductFailure } from './productRedux';
 
+export const login = async (dispatch, user) => {
+  dispatch(loginStart());
+  try {
+    const res = await publicRequest.post("/auth/login", user);
+    dispatch(loginSuccess(res.data));
+    console.log("login successfull!")
+  } catch (err) {
+    dispatch(loginFailure());
+  }
+};
 // export const login = async (dispatch, user) => {
 //   dispatch(loginStart());
 //   try {
-//     const res = await publicRequest.post("/auth/login", user);
+//     const res = await publicRequest.post("/login", user);
 //     dispatch(loginSuccess(res.data));
 //   } catch (err) {
 //     dispatch(loginFailure());
 //   }
 // };
-export const login = async (dispatch, user) => {
-  dispatch(loginStart());
-  try {
-    const res = await publicRequest.post("/login", user);
-    dispatch(loginSuccess(res.data));
-  } catch (err) {
-    dispatch(loginFailure());
-  }
-};
 
 
 

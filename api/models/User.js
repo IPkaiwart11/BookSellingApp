@@ -28,13 +28,13 @@ const UserSchema = new mongoose.Schema(
     password: { type: String, required: true },
     isAdmin: {
       type: Boolean,
-      default: false // Adjust the default value as per your requirement
+      default: false 
     },
     firstName: { type: String },
     lastName: { type: String },
     img: { type: String }
   },
-  { timestamps: true } // Ensure timestamps option is within the schema definition
+  { timestamps: true } 
 );
 
 module.exports = mongoose.model("User", UserSchema);

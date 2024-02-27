@@ -8,7 +8,7 @@ const {
 const router = require("express").Router();
 
 //UPDATE
-// router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
+// router.put("/:id", verifyToken, verifyTokenAndAuthorization, async (req, res) => {
 //   if (req.body.password) {
 //     req.body.password = CryptoJS.AES.encrypt(
 //       req.body.password,
@@ -80,7 +80,7 @@ router.get("/find/:id",async (req, res) => {
 
 
 //GET ALL USER
-// router.get("/", verifyTokenAndAdmin, async (req, res) => {
+// router.get("/", verifyToken,verifyTokenAndAdmin, async (req, res) => {
 //   const query = req.query.new;
 //   try {
 //     const users = query
@@ -106,31 +106,7 @@ router.get("/",async (req, res) => {
 
 //GET USER STATS
 
-router.get("/stats", verifyTokenAndAdmin, async (req, res) => {
-  const date = new Date();
-  const lastYear = new Date(date.setFullYear(date.getFullYear() - 1));
-
-  try {
-    const data = await User.aggregate([
-      { $match: { createdAt: { $gte: lastYear } } },
-      {
-        $project: {
-          month: { $month: "$createdAt" },
-        },
-      },
-      {
-        $group: {
-          _id: "$month",
-          total: { $sum: 1 },
-        },
-      },
-    ]);
-    res.status(200).json(data)
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-// router.get("/stats", async (req, res) => {
+// router.get("/stats", verifyTokenAndAdmin, async (req, res) => {
 //   const date = new Date();
 //   const lastYear = new Date(date.setFullYear(date.getFullYear() - 1));
 
@@ -154,6 +130,30 @@ router.get("/stats", verifyTokenAndAdmin, async (req, res) => {
 //     res.status(500).json(err);
 //   }
 // });
+router.get("/stats", async (req, res) => {
+  const date = new Date();
+  const lastYear = new Date(date.setFullYear(date.getFullYear() - 1));
+
+  try {
+    const data = await User.aggregate([
+      { $match: { createdAt: { $gte: lastYear } } },
+      {
+        $project: {
+          month: { $month: "$createdAt" },
+        },
+      },
+      {
+        $group: {
+          _id: "$month",
+          total: { $sum: 1 },
+        },
+      },
+    ]);
+    res.status(200).json(data)
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 
 
