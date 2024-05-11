@@ -159,6 +159,7 @@ router.post("/login", async (req, res) => {
     console.log("Api: login succesfull!");
   } catch (err) {
     res.status(500).json(err);
+    console.log("error:",err)
   }
 });
 
