@@ -22,7 +22,7 @@ export default function UserList() {
     const res = await userRequest.get("/users");
     const formattedData = res.data.map((item) => ({
       ...item,
-      id: item._id // Rename _id to id
+      id: item._id 
     }));
     setData(formattedData);
   } catch (error) {

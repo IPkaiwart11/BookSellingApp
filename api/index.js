@@ -8,8 +8,6 @@ const authRoute = require("./routes/auth");
 const productRoute = require("./routes/product");
 const cartRoute = require("./routes/cart");
 const orderRoute = require("./routes/order");
-// const stripeRoute = require("./routes/stripe");
-// const registerRoute = require("./routes/register");
 const cors = require("cors");
 
 
@@ -22,12 +20,10 @@ mongoose
 
 // app.use(cors());
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'https://book-selling-5cud5hq3w-ipkaiwart11s-projects.vercel.app/',
   credentials: true,
-  // origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization', 'token'], 
-  // allowedHeaders: ['Content-Type', 'Authorization'], // Add the necessary headers
 }));
 
 
@@ -38,7 +34,6 @@ app.use("/api/users", userRoute);
 app.use("/api/products", productRoute);
 app.use("/api/carts", cartRoute);
 app.use("/api/orders", orderRoute);
-// app.use("/api/register", registerRoute);
 
 app.listen(process.env.PORT || 5000, () => {
   console.log("Backend server is running!");

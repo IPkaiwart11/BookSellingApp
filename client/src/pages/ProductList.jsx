@@ -61,12 +61,12 @@ const ProductList = () => {
           <FilterText>Categories of Books:</FilterText>
           <Select name="typeOfBook" onChange={handleFilters}>
             <Option disabled>Categories</Option>
-            <Option>JOKES</Option>
-            <Option>GK</Option>
-            <Option>CA</Option>
-            <Option>History</Option>
-            <Option>science</Option>
-            <Option>Health and Wellness</Option>
+            <Option value="JOKES">JOKES</Option>
+            <Option value="GK">GK</Option>
+            <Option value="CA">CA</Option>
+            <Option value="History">History</Option>
+            <Option value="science">science</Option>
+            <Option value="Health & Wellness">Health and Wellness</Option>
           </Select>
           <Select name="language" onChange={handleFilters}>
             <Option disabled>Language</Option>

@@ -5,8 +5,10 @@ import { publicRequest } from "../requestMethods";
 
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
+  
   try {
     const res = await publicRequest.post("/auth/login", user);
+  
     dispatch(loginSuccess(res.data));
     alert("login successfull")
   } catch (err) {
@@ -18,8 +20,8 @@ export const register = async (dispatch, user) => {
   dispatch(registerStart());
   try {
     const res = await publicRequest.post("/auth/register", user);
+    console.log(res.data);
     dispatch(registerSuccess(res.data));
-    alert("register successfull")
     
   } catch (err) {
     dispatch(registerFailure());

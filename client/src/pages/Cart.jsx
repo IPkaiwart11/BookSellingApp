@@ -249,9 +249,9 @@ console.log(cart);
                 </ProductDetail>
                 <PriceDetail>
                   <ProductAmountContainer>
-                  <Remove onClick={()=>dec(product.id)} />
+                  <Remove onClick={()=>dec(product._id)} />
                     <ProductAmount>{product.quantity}</ProductAmount>
-                    <Add onClick={()=>inc(product.id)} />
+                    <Add onClick={()=>inc(product._id)} />
                   </ProductAmountContainer>
                   <ProductPrice>
                     Rs {product.price * product.quantity}
