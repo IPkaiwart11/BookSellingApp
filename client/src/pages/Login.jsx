@@ -73,16 +73,24 @@ const Error = styled.span`
 `;
 
 const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
   const dispatch = useDispatch();
   const { isFetching, error } = useSelector((state) => state.user);
 
-  // const {error } = useSelector((state) => state.user);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
   const handleClick = (e) => {
     e.preventDefault();
-    login(dispatch, { username, password });
+    login(dispatch, formData);
   };
   return (
     <Container>
@@ -93,15 +101,17 @@ const Login = () => {
             placeholder="username"
             type="text"
             name="username"
+            value={formData.username}
             autocomplete="username"
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={handleChange}
           />
           <Input
             placeholder="password"
             name="password"
             type="password"
+            value={formData.password}
             autocomplete="password"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={handleChange}
           />
           <Button onClick={handleClick} disabled={isFetching}>
           {/* <Button onClick={handleClick} > */}
