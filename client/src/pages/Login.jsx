@@ -93,12 +93,14 @@ const Login = () => {
             placeholder="username"
             type="text"
             name="username"
+            autocomplete="username"
             onChange={(e) => setUsername(e.target.value)}
           />
           <Input
             placeholder="password"
             name="password"
             type="password"
+            autocomplete="password"
             onChange={(e) => setPassword(e.target.value)}
           />
           <Button onClick={handleClick} disabled={isFetching}>
