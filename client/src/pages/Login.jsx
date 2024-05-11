@@ -91,6 +91,10 @@ const Login = () => {
   const handleClick = (e) => {
     e.preventDefault();
     login(dispatch, formData);
+    setFormData({
+      username: "",
+    password: "",
+    })
   };
   return (
     <Container>

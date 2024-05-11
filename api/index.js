@@ -21,8 +21,9 @@ mongoose
 // app.use(cors());
 app.use(cors({
   origin: 'https://book-selling-app.vercel.app',
+  // origin: 'https://localhost:3000',
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE' , 'HEAD' , 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization', 'token'], 
 }));
 
@@ -35,7 +36,7 @@ app.use("/api/products", productRoute);
 app.use("/api/carts", cartRoute);
 app.use("/api/orders", orderRoute);
 
-const PORT = process.env.PORT || 5000
-app.listen(PORT, () => {
+const port = process.env.PORT || 5000
+app.listen(port, () => {
   console.log("Backend server is running!");
 });
