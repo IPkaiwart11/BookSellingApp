@@ -20,7 +20,7 @@ mongoose
 
 // app.use(cors());
 app.use(cors({
-  origin: 'https://book-selling-5cud5hq3w-ipkaiwart11s-projects.vercel.app/',
+  origin: 'https://book-selling-app.vercel.app/',
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization', 'token'], 
