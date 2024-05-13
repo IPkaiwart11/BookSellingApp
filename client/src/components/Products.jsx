@@ -10,15 +10,9 @@ const Container = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
 `;
-
-const LoadingSpinner = () => <div>Loading...</div>;
-
-const ErrorMessage = () => <div>Error fetching products</div>;
 const Products = ({ cat, filters, sort }) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   
   useEffect(() => {
     const getProducts = async () => {
@@ -29,11 +23,8 @@ const Products = ({ cat, filters, sort }) => {
             : "/products"
         );
         setProducts(res.data);
-        setLoading(false);
       } catch (err) {
         console.error("Error fetching products:", err);
-        setError(err.message);
-        setLoading(false);
       }
     };
     getProducts();
@@ -67,35 +58,11 @@ const Products = ({ cat, filters, sort }) => {
   }, [sort]);
 
   return (
-    // <Container>
-    //   {cat
-    //     ? filteredProducts.map((item) => <Product item={item} key={item.id} />)
-    //     : products
-    //         .slice(0, 8)
-    //         .map((item) => <Product item={item} key={item.id} />)}
-    // </Container>
     <Container>
-    {loading && <LoadingSpinner />}
-    {error && <ErrorMessage />}
-    {!loading && !error && (
-      <React.Fragment>
-        {cat ? (
-          filteredProducts.length > 0 ? (
-            filteredProducts.map((item) => <Product item={item} key={item.id} />)
-          ) : (
-            <div>No products found</div>
-          )
-        ) : (
-          products.length > 0 ? (
-            products.slice(0, 8).map((item) => <Product item={item} key={item.id} />)
-          ) : (
-            <div>No products found</div>
-          )
-        )}
-      </React.Fragment>
-    )}
-  </Container>
-
+      {cat
+        ? filteredProducts.map((item) => <Product item={item} key={item.id} />)
+        : products.slice(0, 8).map((item) => <Product item={item} key={item.id} />)}
+    </Container>
   );
 };
 
