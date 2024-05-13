@@ -14,7 +14,9 @@ const Container = styled.div`
 const Products = ({ cat, filters, sort }) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-
+  console.log("Products:", products);
+  console.log("Filtered Products:", filteredProducts);
+  
   useEffect(() => {
     const getProducts = async () => {
       try {
@@ -25,7 +27,9 @@ const Products = ({ cat, filters, sort }) => {
         );
         //http://localhost:5000/api
         setProducts(res.data);
-      } catch (err) {}
+      } catch (err) {
+        console.error("Error fetching products:", err);
+      }
     };
     getProducts();
   }, [cat]);
