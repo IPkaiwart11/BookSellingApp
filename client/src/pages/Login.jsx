@@ -82,10 +82,10 @@ const Login = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(({
+    setFormData({
       ...formData,
       [name]: value,
-    }));
+    });
   };
 
   const handleClick = (e) => {
