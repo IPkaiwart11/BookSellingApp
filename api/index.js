@@ -2,8 +2,10 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const dotenv = require("dotenv");
-dotenv.config();
+require("dotenv").config();
+console.log("Environment variables loaded successfully:", process.env);
+// const dotenv = require("dotenv").config();
+// dotenv.config();
 const userRoute = require("./routes/user");
 const authRoute = require("./routes/auth");
 const productRoute = require("./routes/product");
@@ -11,8 +13,7 @@ const cartRoute = require("./routes/cart");
 const orderRoute = require("./routes/order");
 const cors = require("cors");
 console.log("MongoDB Connection URL:", process.env.MONGO_URL);
-mongoose
-  .connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("DB Connection Successful!"))
   .catch((err) => {
     console.error("MongoDB connection error", err);
