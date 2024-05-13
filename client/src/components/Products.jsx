@@ -28,7 +28,6 @@ const Products = ({ cat, filters, sort }) => {
             ? `/products?category=${cat}`
             : "/products"
         );
-        //http://localhost:5000/api
         setProducts(res.data);
         setLoading(false);
       } catch (err) {
@@ -76,15 +75,26 @@ const Products = ({ cat, filters, sort }) => {
     //         .map((item) => <Product item={item} key={item.id} />)}
     // </Container>
     <Container>
-      {loading && <LoadingSpinner />}
-      {error && <ErrorMessage />}
-      {!loading && !error &&
-        (cat
-          ? (filteredProducts.length > 0 &&
-              filteredProducts.map((item) => <Product item={item} key={item.id} />))
-          : (products.length > 0 &&
-              products.slice(0, 8).map((item) => <Product item={item} key={item.id} />)))}
-    </Container>
+    {loading && <LoadingSpinner />}
+    {error && <ErrorMessage />}
+    {!loading && !error && (
+      <React.Fragment>
+        {cat ? (
+          filteredProducts.length > 0 ? (
+            filteredProducts.map((item) => <Product item={item} key={item.id} />)
+          ) : (
+            <div>No products found</div>
+          )
+        ) : (
+          products.length > 0 ? (
+            products.slice(0, 8).map((item) => <Product item={item} key={item.id} />)
+          ) : (
+            <div>No products found</div>
+          )
+        )}
+      </React.Fragment>
+    )}
+  </Container>
 
   );
 };
