@@ -11,11 +11,14 @@ const Container = styled.div`
   justify-content: space-between;
 `;
 
+const LoadingSpinner = () => <div>Loading...</div>;
+
+const ErrorMessage = () => <div>Error fetching products</div>;
 const Products = ({ cat, filters, sort }) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-  console.log("Products:", products);
-  console.log("Filtered Products:", filteredProducts);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   
   useEffect(() => {
     const getProducts = async () => {
@@ -27,8 +30,11 @@ const Products = ({ cat, filters, sort }) => {
         );
         //http://localhost:5000/api
         setProducts(res.data);
+        setLoading(false);
       } catch (err) {
         console.error("Error fetching products:", err);
+        setError(err.message);
+        setLoading(false);
       }
     };
     getProducts();
@@ -70,12 +76,15 @@ const Products = ({ cat, filters, sort }) => {
     //         .map((item) => <Product item={item} key={item.id} />)}
     // </Container>
     <Container>
-  {cat
-    ? (filteredProducts.length > 0 &&
-        filteredProducts.map((item) => <Product item={item} key={item.id} />))
-    : (products.length > 0 &&
-        products.slice(0, 8).map((item) => <Product item={item} key={item.id} />))}
-</Container>
+      {loading && <LoadingSpinner />}
+      {error && <ErrorMessage />}
+      {!loading && !error &&
+        (cat
+          ? (filteredProducts.length > 0 &&
+              filteredProducts.map((item) => <Product item={item} key={item.id} />))
+          : (products.length > 0 &&
+              products.slice(0, 8).map((item) => <Product item={item} key={item.id} />)))}
+    </Container>
 
   );
 };
