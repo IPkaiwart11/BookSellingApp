@@ -185,7 +185,7 @@ const postDataToServer = async () => {
   ///////////////////
   try {
     // Make a POST request to your backend endpoint
-    const response = await fetch("http://localhost:5000/api/carts", {
+    const response = await fetch("https://booksellingapp.onrender.com/api/carts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

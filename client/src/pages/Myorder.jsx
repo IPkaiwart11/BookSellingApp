@@ -79,7 +79,7 @@ function Myorder() {
   useEffect(() => {
     const getAllCartsData = async () => {
       try {
-        const res = await publicRequest.get("/carts");
+        const res = await publicRequest.get("https://booksellingapp.onrender.com/api/carts");
         setCarts(res.data);
       } catch (error) {
         console.error("Error fetching cart data:", error);

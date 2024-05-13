@@ -19,8 +19,8 @@ const Products = ({ cat, filters, sort }) => {
       try {
         const res = await axios.get(
           cat
-            ? `/products?category=${cat}`
-            : "/products"
+            ? `https://booksellingapp.onrender.com/api/products?category=${cat}`
+            : "https://booksellingapp.onrender.com/api/products"
         );
         setProducts(res.data);
       } catch (err) {
