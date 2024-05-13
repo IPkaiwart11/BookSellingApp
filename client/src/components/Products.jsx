@@ -62,13 +62,21 @@ const Products = ({ cat, filters, sort }) => {
   }, [sort]);
 
   return (
+    // <Container>
+    //   {cat
+    //     ? filteredProducts.map((item) => <Product item={item} key={item.id} />)
+    //     : products
+    //         .slice(0, 8)
+    //         .map((item) => <Product item={item} key={item.id} />)}
+    // </Container>
     <Container>
-      {cat
-        ? filteredProducts.map((item) => <Product item={item} key={item.id} />)
-        : products
-            .slice(0, 8)
-            .map((item) => <Product item={item} key={item.id} />)}
-    </Container>
+  {cat
+    ? (filteredProducts.length > 0 &&
+        filteredProducts.map((item) => <Product item={item} key={item.id} />))
+    : (products.length > 0 &&
+        products.slice(0, 8).map((item) => <Product item={item} key={item.id} />))}
+</Container>
+
   );
 };
 
