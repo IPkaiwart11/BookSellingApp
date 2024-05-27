@@ -4,6 +4,9 @@ import styled from "styled-components";
 import { register } from "../redux/apiCalls";
 import { mobile } from "../responsive";
 import { useDispatch, useSelector } from "react-redux";
+// import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import { NavLink } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 // const { isFetching, error } = useSelector((state) => state.user);
 const Container = styled.div`
   width: 100vw;
@@ -65,17 +68,17 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const dispatch = useDispatch();
   const { isFetching } = useSelector((state) => state.user);
-
+  const navigate = useNavigate();
   const handleClick = (e) => {
     e.preventDefault();
 
-    // Add additional validation logic if needed
     if (password !== confirmPassword) {
       alert("Passwords do not match");
       return;
     }
 
-    register(dispatch, { username, email, password });
+    register(dispatch, { username, email, password },navigate);
+    
   };
 
   return (
@@ -110,6 +113,14 @@ const Register = () => {
           <Button onClick={handleClick} disabled={isFetching}>
             REGISTER
           </Button>
+          
+            <h3>
+            If already have an account ? 
+            <NavLink to="/">
+            <b> Click me for Login</b>
+            </NavLink>
+            </h3>
+            
           {/* {error && <Error>{error.message}</Error>} */}
         </Form>
       </Wrapper>

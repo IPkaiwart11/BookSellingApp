@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-// import { popularProducts } from "../data";
 import Product from "./Product";
 import axios from "axios";
 
@@ -22,6 +21,11 @@ const Products = ({ cat, filters, sort }) => {
             ? `https://booksellingapp.onrender.com/api/products?category=${cat}`
             : "https://booksellingapp.onrender.com/api/products"
         );
+        // const res = await axios.get(
+        //   cat
+        //     ? `http://localhost:5000/api/products?category=${cat}`
+        //     : "http://localhost:5000/api/products"
+        // );
         setProducts(res.data);
       } catch (err) {
         console.error("Error fetching products:", err);

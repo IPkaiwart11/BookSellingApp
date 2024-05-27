@@ -8,11 +8,12 @@ import {
   Twitter,
 } from "@material-ui/icons";
 import styled from "styled-components";
-import { mobile } from "../responsive";
+import { mobile, tablet } from "../responsive";
 
 const Container = styled.div`
   display: flex;
   ${mobile({ flexDirection: "column" })}
+  ${tablet({flexDirection:'column'})}
 `;
 
 const Left = styled.div`

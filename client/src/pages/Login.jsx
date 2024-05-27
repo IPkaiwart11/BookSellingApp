@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { login } from "../redux/apiCalls";
 import { mobile } from "../responsive";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
-// import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import  {NavLink}  from "react-router-dom";
 
 const Container = styled.div`     
   width: 100vw;
@@ -59,12 +59,12 @@ const Button = styled.button`
   }
 `;
 
- NavLink = styled.a`
-  margin: 5px 0px;
-  font-size: 12px;
-  text-decoration: underline;
-  cursor: pointer;
-`;
+//  const NavLink = styled.a`
+//   margin: 5px 0px;
+//   font-size: 12px;
+//   text-decoration: underline;
+//   cursor: pointer;
+// `;
 
 
 
@@ -122,8 +122,15 @@ const Login = () => {
             LOGIN
           </Button>
           {error && <Error>Something went wrong...</Error>}
-          <NavLink>DO NOT YOU REMEMBER THE PASSWORD?</NavLink>
-          <NavLink to="/register">IF DO NOT HAVE ACCOUNT REGISTER FIRST, SWIPE DOWN</NavLink>
+          <p>DO NOT REMEMBER THE PASSWORD?</p>
+          
+            <h3>
+            IF DO NOT HAVE ACCOUNT ? 
+            <NavLink to="/register">
+            <b> REGISTER FIRST</b>
+            </NavLink>
+            </h3>
+           
           {/* <h3>IF DO NOT HAVE ACCOUNT? CREATE A NEW ACCOUNT SWIPE UP</h3> */}
         </Form>
       </Wrapper>

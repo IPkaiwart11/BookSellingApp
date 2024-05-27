@@ -6,6 +6,7 @@ import {
 import { NavLink } from "react-router-dom";
 // import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import styled from "styled-components";
+import { mobile, tablet } from "../responsive";
 
 const Info = styled.div`
   opacity: 0;
@@ -50,6 +51,8 @@ const Circle = styled.div`
 const Image = styled.img`
   height: 75%;
   z-index: 2;
+  ${mobile({ width: "200px" })}
+  ${tablet({width:'200px'})}
 `;
 
 const Icon = styled.div`
@@ -72,7 +75,9 @@ const Product = ({ item }) => {
   return (
     <Container>
       <Circle />
-      <Image src={item.img} />
+      <Image 
+      src={item.img}
+      />
       <Info>
         <Icon>
           <ShoppingCartOutlined />

@@ -1,26 +1,45 @@
-import styled from "styled-components";
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
-const Success = () => {
-  
-const SuccessContainer = styled.div`
-background-color:#cffcd1;
-width:100%;
-height:100vh;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-`
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
- const Message = styled.div`
- color:#064708;
- font-size:60px;
- `
+export default function Success() {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
- <SuccessContainer>
-  <Message>YOUR ORDER IS SUCCESSFULL</Message>
- </SuccessContainer>
-    )
+    <div>
+      <Button onClick={handleOpen}>Open modal</Button>
+      <Modal
+        keepMounted
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="keep-mounted-modal-title"
+        aria-describedby="keep-mounted-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="keep-mounted-modal-title" variant="h6" component="h2">
+            Text in a modal
+          </Typography>
+          <Typography id="keep-mounted-modal-description" sx={{ mt: 2 }}>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </Typography>
+        </Box>
+      </Modal>
+    </div>
+  );
 }
-export default Success;

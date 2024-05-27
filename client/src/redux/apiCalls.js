@@ -15,12 +15,14 @@ export const login = async (dispatch, user) => {
   }
 };
 
-export const register = async (dispatch, user) => {
+export const register = async (dispatch, user,navigate) => {
+ 
   dispatch(registerStart());
   try {
     const res = await publicRequest.post("/auth/register", user);
     console.log(res.data);
     dispatch(registerSuccess(res.data));
+    navigate("/");
     
   } catch (err) {
     dispatch(registerFailure());

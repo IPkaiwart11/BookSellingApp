@@ -5,56 +5,36 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Cart from "./pages/Cart";
 import Myorder from "./pages/Myorder";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  // Redirect,
-} from "react-router-dom";
-
+import { BrowserRouter as Router, Routes, Route, NavLink, useNavigate } from 'react-router-dom';
 
 import Success from "./pages/Success";
 import { useSelector } from "react-redux";
+import PaymentPage from "./pages/PaymentPage";
 
 const App = () => {
   const user = useSelector((state) => state.user.currentUser);
   return (
     <Router>
-      <Switch>
-        {user?
-         <>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/products/:category">
-          <ProductList />
-        </Route>
-        <Route path="/product/:id">
-          <Product />
-        </Route>
-        <Route path="/cart">
-          <Cart />
-        </Route>
-        <Route path="/success">
-          <Success />
-        </Route>
-        <Route path="/myorder">
-          <Myorder />
-        </Route>
-         </>
-          :
-        
+    <Routes>
+      {user ? (
         <>
-
-    <Route path="/"> 
-          <Login />
-           <Register/>
-          </Route>
-          
-          </> 
-           } 
-      </Switch>
-    </Router>
+          <Route path="/" element={<Home />} />
+          <Route path="/products/:category" element={<ProductList />} />
+          <Route path="/product/:id" element={<Product />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/payment" element={<PaymentPage/>} />
+          <Route path="/success" element={<Success />} />
+          <Route path="/myorder" element={<Myorder />} />
+        </>
+      ) : (
+        <>
+          <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </>
+      )}
+    </Routes>
+  </Router>
+  
   );
 };
 
