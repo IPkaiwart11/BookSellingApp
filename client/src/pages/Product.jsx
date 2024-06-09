@@ -67,27 +67,31 @@ const FilterTitle = styled.span`
   font-weight: 200;
 `;
 
-// const FilterTypeOfBook = styled.div`
-//   width: 20px;
-//   height: 20px;
-//   border-radius: 50%;
-  
-//   margin: 0px 5px;
-//   cursor: pointer;
-// `;
+const FilterTypeOfBook = styled.select`
+  width: 150px;
+  height: 30px;
+  border-radius: 5%;
+  background-color: ${(props) => props.color};
+  margin: 0px 5px;
+  cursor: pointer;
+`;
 // background-color: ${(props) => props.color};
 
 const FilterTypeOfBookOption = styled.option``;
 
-const FilterTypeOfBook = styled.select`
-  margin-left: 10px;
-  padding: 5px;
-`;
+// const FilterTypeOfBook = styled.select`
+//   margin-left: 10px;
+//   padding: 5px;
+// `;
 
 
 const FilterLanguage = styled.select`
-  margin-left: 10px;
-  padding: 5px;
+width: 150px;
+height: 30px;
+border-radius: 5%;
+background-color: ${(props) => props.color};
+margin: 0px 5px;
+cursor: pointer;
 `;
 
 const FilterLanguageOption = styled.option``;
@@ -134,8 +138,11 @@ const Product = () => {
   const id = location.pathname.split("/")[2];
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
-  const [typeOfBook, setTypeOfBook] = useState("");
-  const [language, setLanguage] = useState("");
+  // const [typeOfBook, setTypeOfBook] = useState({});
+  // const [language, setLanguage] = useState([]);
+  const [typeOfBook, setTypeOfBook] = useState(product.typeOfBook && product.typeOfBook.length > 0 ? product.typeOfBook[0] : '');
+const [language, setLanguage] = useState(product.language && product.language.length > 0 ? product.language[0] : '');
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -159,13 +166,15 @@ const Product = () => {
   const handleClick = () => {
     const uniqueId = uuidv4();
     dispatch(
-      addProduct({ ...product, quantity,id: uniqueId })
+      addProduct({ ...product,typeOfBook,language, quantity,id: uniqueId })
     );
   };
   return (
-    <Container>
-      <Navbar />
+    <> 
+       <Navbar />
       <Announcement />
+    <Container>
+      
       <Wrapper>
         <ImgContainer>
           <Image src={product.img} />
@@ -177,23 +186,37 @@ const Product = () => {
           <FilterContainer>
             
             <Filter>
-              <FilterTitle>Type of Book</FilterTitle>
+              {/* <FilterTitle>Type of Book</FilterTitle>
               <FilterTypeOfBook onChange={(e) => setTypeOfBook(e.target.value)}>
                 {product.typeOfBook?.map((c) => (
                   <FilterTypeOfBookOption key={c}>{c}</FilterTypeOfBookOption>
-                ))}
-              </FilterTypeOfBook>
+                 ))}
+              </FilterTypeOfBook> */}
+              <FilterTypeOfBook onChange={(e) => setTypeOfBook(e.target.value)}>
+  <option disabled selected value="">Select Type of Book</option>
+  {product.typeOfBook?.map((c) => (
+    <FilterTypeOfBookOption key={c}>{c}</FilterTypeOfBookOption>
+  ))}
+</FilterTypeOfBook>
+
             </Filter>
 
              </FilterContainer>
              <FilterContainer>
             <Filter>
-              <FilterTitle>Language</FilterTitle>
-              <FilterLanguage onChange={(e) => setLanguage(e.target.value)}>
+              {/* <FilterTitle>Language</FilterTitle> */}
+              {/* <FilterLanguage onChange={(e) => setLanguage(e.target.value)}>
                 {product.language?.map((s) => (
                   <FilterLanguageOption key={s}>{s}</FilterLanguageOption>
                 ))}
-              </FilterLanguage>
+              </FilterLanguage> */}
+              <FilterLanguage onChange={(e) => setLanguage(e.target.value)}>
+  <option disabled selected value="">Select Language</option>
+  {product.language?.map((s) => (
+    <FilterLanguageOption key={s}>{s}</FilterLanguageOption>
+  ))}
+</FilterLanguage>
+
             </Filter>
           </FilterContainer>
           <AddContainer>
@@ -207,8 +230,11 @@ const Product = () => {
         </InfoContainer>
       </Wrapper>
       {/* <Newsletter /> */}
-      <Footer />
+     
     </Container>
+     <Footer />
+     </>
+
   );
 };
 

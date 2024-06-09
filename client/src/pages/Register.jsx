@@ -1,13 +1,13 @@
 
+
 import { useState } from "react";
 import styled from "styled-components";
 import { register } from "../redux/apiCalls";
 import { mobile } from "../responsive";
 import { useDispatch, useSelector } from "react-redux";
-// import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
-// const { isFetching, error } = useSelector((state) => state.user);
+
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
@@ -47,10 +47,12 @@ const Input = styled.input`
   padding: 10px;
 `;
 
-// const Agreement = styled.span`
-//   font-size: 12px;
-//   margin: 20px 0px;
-// `;
+const Select = styled.select`
+  flex: 1;
+  min-width: 40%;
+  margin: 20px 10px 0px 0px;
+  padding: 10px;
+`;
 
 const Button = styled.button`
   width: 40%;
@@ -62,66 +64,125 @@ const Button = styled.button`
 `;
 
 const Register = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    username: '',
+    email: '',
+    phoneNumber: '',
+    dateOfBirth: '',
+    gender: '',
+    password: '',
+    confirmPassword: '',
+    isAdmin: 'false',
+  });
   const dispatch = useDispatch();
   const { isFetching } = useSelector((state) => state.user);
   const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
   const handleClick = (e) => {
     e.preventDefault();
 
-    if (password !== confirmPassword) {
+    if (formData.password !== formData.confirmPassword) {
       alert("Passwords do not match");
       return;
     }
 
-    register(dispatch, { username, email, password },navigate);
-    
+    try {
+      register(dispatch, formData, navigate);
+      console.log("Registration successful");
+    } catch (error) {
+      console.log("Registration error", error);
+    }
   };
 
   return (
     <Container>
       <Wrapper>
         <Title>Register</Title>
-        <Form>
+        <Form onSubmit={handleClick}>
+          <Input
+            placeholder="First Name"
+            type="text"
+            name="firstName"
+            onChange={handleChange}
+            required
+          />
+          <Input
+            placeholder="Last Name"
+            type="text"
+            name="lastName"
+            onChange={handleChange}
+            required
+          />
           <Input
             placeholder="username"
             type="text"
             name="username"
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={handleChange}
+            required
           />
           <Input
-            placeholder="email"
+            placeholder="Email"
             type="email"
             name="email"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={handleChange}
+            required
           />
           <Input
-            placeholder="password"
+            placeholder="Mobile No."
+            type="number"
+            name="phoneNumber"
+            onChange={handleChange}
+            required
+          />
+          <Input
+            type="date"
+            name="dateOfBirth"
+            onChange={handleChange}
+            required
+          />
+          <Select
+            name="gender"
+            onChange={handleChange}
+            required
+          >
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="other">Other</option>
+          </Select>
+          <Input
+            placeholder="Password"
             name="password"
             type="password"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={handleChange}
+            required
           />
           <Input
-            placeholder="confirm password"
+            placeholder="Confirm Password"
             name="confirmPassword"
             type="password"
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            onChange={handleChange}
+            required
           />
-          <Button onClick={handleClick} disabled={isFetching}>
+          <Button disabled={isFetching}>
             REGISTER
           </Button>
-          
-            <h3>
-            If already have an account ? 
+          <h3>
+            If you already have an account?
             <NavLink to="/">
-            <b> Click me for Login</b>
+              <b> Click here to Login</b>
             </NavLink>
-            </h3>
-            
-          {/* {error && <Error>{error.message}</Error>} */}
+          </h3>
         </Form>
       </Wrapper>
     </Container>

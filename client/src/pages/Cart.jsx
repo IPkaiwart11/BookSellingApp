@@ -175,9 +175,9 @@ const Cart = ({ inc, dec }) => {
                   </ProductDetail>
                   <PriceDetail>
                     <ProductAmountContainer>
-                      <Remove onClick={() => dec(product.id)} />
+                      {/* <Remove onClick={() => dec(product.id)} /> */}
                       <ProductAmount>{product.quantity}</ProductAmount>
-                      <Add onClick={() => inc(product.id)} />
+                      {/* <Add onClick={() => inc(product.id)} /> */}
                     </ProductAmountContainer>
                     <ProductPrice>
                       Rs {product.price * product.quantity}

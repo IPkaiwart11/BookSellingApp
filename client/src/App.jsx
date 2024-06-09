@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Routes, Route, NavLink, useNavigate } from 're
 import Success from "./pages/Success";
 import { useSelector } from "react-redux";
 import PaymentPage from "./pages/PaymentPage";
+import MyProfile from "./pages/MyProfile";
 
 const App = () => {
   const user = useSelector((state) => state.user.currentUser);
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/payment" element={<PaymentPage/>} />
           <Route path="/success" element={<Success />} />
           <Route path="/myorder" element={<Myorder />} />
+          <Route path="/myprofile" element={<MyProfile/>} />
         </>
       ) : (
         <>

@@ -5,7 +5,7 @@ import Products from "../components/Products";
 import Footer from "../components/Footer";
 import { mobile } from "../responsive";
 import { useLocation } from "react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Container = styled.div``;
 
@@ -43,13 +43,14 @@ const ProductList = () => {
   const [filters, setFilters] = useState({});
   const [sort, setSort] = useState("newest");
 
-  const handleFilters = (e) => {
-    const value = e.target.value;
-    setFilters({
-      ...filters,
-      [e.target.name]: value,
-    });
-  };
+  
+    const handleFilters = (e) => {
+      setFilters({
+        ...filters,
+        [e.target.name]:e.target.value,
+      });
+    };
+  
 
   return (
     <Container>
@@ -58,20 +59,20 @@ const ProductList = () => {
       <Title>{cat}</Title>
       <FilterContainer>
         <Filter>
-          <FilterText>Categories of Books:</FilterText>
-          <Select name="typeOfBook" onChange={handleFilters}>
-            <Option disabled>Categories</Option>
+          <FilterText>Language of Books:</FilterText>
+          {/* <Select name="typeOfBook" onChange={handleFilters}>
+            <Option  value='Categories'>Categories</Option>
             <Option value="JOKES">JOKES</Option>
             <Option value="GK">GK</Option>
             <Option value="CA">CA</Option>
             <Option value="History">History</Option>
             <Option value="science">science</Option>
             <Option value="Health & Wellness">Health and Wellness</Option>
-          </Select>
+          </Select> */}
           <Select name="language" onChange={handleFilters}>
             <Option disabled>Language</Option>
-            <Option>Hindi</Option>
-            <Option>English</Option>
+            <Option value='hindi'>Hindi</Option>
+            <Option value='english'>English</Option>
           </Select>
         </Filter>
         <Filter>

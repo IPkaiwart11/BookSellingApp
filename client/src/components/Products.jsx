@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Product from "./Product";
 import axios from "axios";
+import { BASE_URL } from "../url";
 
 const Container = styled.div`
   padding: 20px;
@@ -16,15 +17,18 @@ const Products = ({ cat, filters, sort }) => {
   useEffect(() => {
     const getProducts = async () => {
       try {
+        console.log(BASE_URL)
+        // console.log(import.meta.env.BASE_URL)
         const res = await axios.get(
+          // `/signIn`,
           cat
-            ? `https://booksellingapp.onrender.com/api/products?category=${cat}`
-            : "https://booksellingapp.onrender.com/api/products"
+            ? `${BASE_URL}/products?category=${cat}`
+            : `${BASE_URL}/products`
         );
         // const res = await axios.get(
         //   cat
-        //     ? `http://localhost:5000/api/products?category=${cat}`
-        //     : "http://localhost:5000/api/products"
+        //     ? `${import.meta.env.BASE_URL}/products?category=${cat}`
+        //     : `${import.meta.env.BASE_URL}/products`
         // );
         setProducts(res.data);
       } catch (err) {
@@ -64,8 +68,8 @@ const Products = ({ cat, filters, sort }) => {
   return (
     <Container>
       {cat
-        ? filteredProducts.map((item) => <Product item={item} key={item.id} />)
-        : products.slice(0, 8).map((item) => <Product item={item} key={item.id} />)}
+        ? (filteredProducts.map((item) => <Product item={item} key={item.id} />))
+        : (products.slice(0, 8).map((item) => <Product item={item} key={item.id} />))}
     </Container>
   );
 };

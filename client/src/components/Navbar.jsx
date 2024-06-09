@@ -102,7 +102,9 @@ export default function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
+      <NavLink to='/myprofile'>
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      </NavLink>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
   );
@@ -168,7 +170,7 @@ export default function PrimarySearchAppBar() {
       </MenuItem>
       </NavLink>
 
-
+<NavLink to='/myprofile'>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           size="large"
@@ -181,6 +183,7 @@ export default function PrimarySearchAppBar() {
         </IconButton>
         <p>Profile</p>
       </MenuItem>
+      </NavLink>
     </Menu>
   );
 
@@ -197,7 +200,7 @@ export default function PrimarySearchAppBar() {
             sx={{ mr: 2 }}
           >
             <img 
-            src="./logo.png" 
+            src="../logo.png" 
             alt="logo"
             style={{width:'50px'}}
             />

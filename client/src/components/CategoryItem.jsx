@@ -8,7 +8,7 @@ import { NavLink } from "react-router-dom";
 const Container = styled.div`
   flex: 1;
   margin: 3px;
-  height: 70vh;
+  height: 30vh;
   position: relative;
 `;
 
@@ -33,7 +33,7 @@ const Info = styled.div`
 `;
 
 const Title = styled.h1`
-    color:green;
+    color:white;
     margin-bottom: 20px;
 `;
 

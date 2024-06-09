@@ -34,7 +34,6 @@ const Container = styled.div`
   justify-content: center;
   background-color: #f5fbfd;
   position: relative;
-
   &:hover ${Info}{
     opacity: 1;
   }
@@ -50,8 +49,9 @@ const Circle = styled.div`
 
 const Image = styled.img`
   height: 75%;
+  width: 200px;
   z-index: 2;
-  ${mobile({ width: "200px" })}
+  ${mobile({width: "100px"})}
   ${tablet({width:'200px'})}
 `;
 
@@ -74,7 +74,7 @@ const Icon = styled.div`
 const Product = ({ item }) => {
   return (
     <Container>
-      <Circle />
+      {/* <Circle /> */}
       <Image 
       src={item.img}
       />

@@ -5,6 +5,7 @@ import { mobile, tablet } from '../responsive';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
+import { BASE_URL } from '../url';
 
 const FullBody = styled.div`
 margin-top:10px;
@@ -138,7 +139,7 @@ export default function Payment() {
         // status: ,
       }
       try{
-        const response = await fetch("https://booksellingapp.onrender.com/api/orders",{
+        const response = await fetch(`${BASE_URL}/orders`,{
         // const response = await fetch("http://localhost:5000/api/orders", {
           method: "POST",
           headers: {
@@ -148,7 +149,7 @@ export default function Payment() {
         });
   
         ////////////////
-  const handlePayment = async() => {
+  var handlePayment = async() => {
     const order = await response.json();
        
         const options = {
@@ -194,6 +195,14 @@ export default function Payment() {
           alert(response.error.metadata.payment_id);
         });
         rzp1.open();
+        // if (order.ok) {
+        //   handleSubmit();
+        //   // console.log(body);
+        //   console.log("Payment successfully");
+        //   // handlePayment();
+        // } else {
+        //   console.error("Payment Failed");
+        // }
       }
     ////////////////
         if (response.ok) {
