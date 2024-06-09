@@ -81,6 +81,9 @@ router.post("/register", async (req, res) => {
       img: req.body.img,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
+      gender: req.body.gender,
+      phoneNumber: req.body.phoneNumber,
+      dateOfBirth: req.body.dateOfBirth,
       password: CryptoJS.AES.encrypt(req.body.password, process.env.PASS_SEC).toString(),
       email: req.body.email,
       isAdmin: req.body.isAdmin || false // Set isAdmin to false if not provided
