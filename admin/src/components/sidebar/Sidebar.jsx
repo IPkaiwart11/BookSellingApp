@@ -54,6 +54,12 @@ export default function Sidebar() {
                 Products
               </li>
             </NavLink>
+            <NavLink to="/orders" className="link">
+              <li className="sidebarListItem">
+                <Storefront className="sidebarIcon" />
+                Orders
+              </li>
+            </NavLink>
             <li className="sidebarListItem">
               <AttachMoney className="sidebarIcon" />
               Transactions

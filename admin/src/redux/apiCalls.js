@@ -14,6 +14,7 @@ import {
   addProductStart,
   addProductSuccess,
 } from "./productRedux";
+import { deleteOrderFailure, deleteOrderStart, deleteOrderSuccess, getOrderFailure, getOrderStart, getOrderSuccess } from "./orderReducer";
 // import axios from 'axios';
 // import { getProductStart, getProductSuccess, getProductFailure } from './productRedux';
 
@@ -97,6 +98,7 @@ export const deleteProduct = async (id, dispatch) => {
 //   }
 // };
 export const updateProduct = async (id, product, dispatch) => {
+  dispatch(updateProductStart());
   try {
     const res = await userRequest.put(`/products/${id}`, product); // Assuming the endpoint is '/products/:id'
     // Dispatch the success action if the update was successful
@@ -120,4 +122,30 @@ export const addProduct = async (product, dispatch) => {
   }
 };
 
+/////////////////////////////
+// order products
+export const getOrders = async (dispatch) => {
+  dispatch(getOrderStart());
+  try {
+    const res = await publicRequest.get("/carts");
+    dispatch(getOrderSuccess(res.data));
+  } catch (err) {
+    dispatch(getOrderFailure());
+  }
+};
+
+///////////delete order 
+export const deleteOrder = async (id, dispatch) => {
+  dispatch(deleteOrderStart());
+  try {
+    const res = await userRequest.delete(`/carts/${id}`); // Assuming the endpoint is '/products/:id'
+    // Dispatch the success action if the deletion was successful
+    dispatch(deleteOrderSuccess(id));
+    return res.data; // Optional: Return the response data if needed
+  } catch (error) {
+    // Dispatch the failure action if an error occurs
+    dispatch(deleteOrderFailure());
+    throw new Error("Error deleting product:", error);
+  }
+};
 
