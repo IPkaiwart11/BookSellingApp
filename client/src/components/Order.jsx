@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import ButtonBase from '@mui/material/ButtonBase';
 import { useSelector } from "react-redux";
 import { BASE_URL } from "../url";
+import Skeleton from '@mui/material/Skeleton';
 
 const Img = styled('img')({
   margin: 'auto',
@@ -36,6 +37,7 @@ export default function Order() {
 
   return (
    <>
+   
     <div 
     style={{
       background: 'white',
@@ -67,9 +69,16 @@ export default function Order() {
           >
             <Grid item>
               <ButtonBase sx={{ width: 128, height: 128 }}>
+                {!product?(
+                  <Skeleton sx={{ height: 50,width: 100 }} animation="wave" variant="rectangular" />
+                ):(
                 <Img alt="img" src={product.product.img} />
-              </ButtonBase>
+              )}
+                </ButtonBase>
             </Grid>
+            {!product? (
+              <Skeleton sx={{ height: 100,width: 300 }} animation="wave" variant="rectangular" />
+            ):(
             <Grid item xs={12} sm container>
               <Grid item xs container direction="column" spacing={2}>
                 <Grid item xs>
@@ -93,8 +102,12 @@ export default function Order() {
                 </Grid>
               </Grid>
             </Grid>
+            )}
           </Grid>
         ))}
+        {!order?(
+           <Skeleton sx={{ height: 100,width: 300 }} animation="wave" variant="rectangular" />
+        ):(
         <Grid item xs={12} md={4}>
           <Typography variant="subtitle1" component="div">
             <b>Address:</b> {order.address.name} {order.address.address} {order.address.zipCode} {order.address.city} {order.address.state} {order.address.country}
@@ -103,11 +116,12 @@ export default function Order() {
             <b>Total: Rs {order.total}</b>
           </Typography>
         </Grid>
+        )}
       </Grid>
     </Paper>
       ))
     ):(
-      <h2>No orders yet</h2>
+      <h2>Your order is Empty</h2>
     )}
   </div>
   

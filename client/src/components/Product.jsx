@@ -3,6 +3,7 @@ import {
   SearchOutlined,
   ShoppingCartOutlined,
 } from "@material-ui/icons";
+import Skeleton from '@mui/material/Skeleton';
 import { NavLink } from "react-router-dom";
 // import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import styled from "styled-components";
@@ -73,11 +74,17 @@ const Icon = styled.div`
 
 const Product = ({ item }) => {
   return (
-    <Container>
+    <>
+     
+        <Container>
       {/* <Circle /> */}
+      {!item?(
+       <Skeleton animation="wave" variant="rectangular" width={200} height={75}  />
+     ):(
       <Image 
       src={item.img}
       />
+    )}
       <Info>
         <Icon>
           <ShoppingCartOutlined />
@@ -92,6 +99,9 @@ const Product = ({ item }) => {
         </Icon>
       </Info>
     </Container>
+    
+    </>
+
   );
 };
 
