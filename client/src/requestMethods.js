@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://book-selling-app-ob4s.vercel.app/api";
+const BASE_URL = "https://book-selling-app-qjzy-8epc2ma36-ipkaiwart11s-projects.vercel.app/api";
 // const BASE_URL = "http://localhost:5000/api";
 
 const user = JSON.parse(localStorage.getItem("persist:root"))?.user;
