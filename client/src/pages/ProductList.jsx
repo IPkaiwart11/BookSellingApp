@@ -59,8 +59,8 @@ const ProductList = () => {
       <Title>{cat}</Title>
       <FilterContainer>
         <Filter>
-          <FilterText>Language of Books:</FilterText>
-          {/* <Select name="typeOfBook" onChange={handleFilters}>
+          <FilterText>Category of Books:</FilterText>
+          <Select name="typeOfBook" onChange={handleFilters}>
             <Option  value='Categories'>Categories</Option>
             <Option value="JOKES">JOKES</Option>
             <Option value="GK">GK</Option>
@@ -68,7 +68,8 @@ const ProductList = () => {
             <Option value="History">History</Option>
             <Option value="science">science</Option>
             <Option value="Health & Wellness">Health and Wellness</Option>
-          </Select> */}
+          </Select>
+          <FilterText>Language of Books:</FilterText>
           <Select name="language" onChange={handleFilters}>
             <Option disabled>Language</Option>
             <Option value='hindi'>Hindi</Option>

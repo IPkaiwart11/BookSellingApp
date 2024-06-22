@@ -17,7 +17,7 @@ const Products = ({ cat, filters, sort }) => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        console.log(BASE_URL)
+        // console.log(BASE_URL)
         // console.log(import.meta.env.BASE_URL)
         const res = await axios.get(
           // `/signIn`,
