@@ -8,7 +8,7 @@ const ProductSchema = new mongoose.Schema({
   language: { type: Array},
   typeOfBook: { type: Array},
   price: { type: Number},
-  // inStock: { type: Boolean, default: true },
+  inStock: { type: Boolean, default: true },
 });
 
 // const CartItemSchema = new mongoose.Schema({
@@ -44,7 +44,17 @@ const OrderSchema = new mongoose.Schema(
     ],
     total: { type: Number, required: true },
     address: { type: Object, required: true },
-    status: { type: String, default: "pending" },
+    tracking:{
+      status:{type: String, default: 'Your Order is Confirmed' },
+      updates: [
+        {
+          timestamps:{type:Date, default: Date.now},
+          location: {type: String},
+          status: {type: String},
+        }
+      ]
+    }
+    // status: { type: String, default: "pending" },
   },
   { timestamps: true }
 );

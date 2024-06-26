@@ -34,6 +34,7 @@ app.use("/api/users", userRoute);
 app.use("/api/products", productRoute);
 app.use("/api/carts", cartRoute);
 app.use("/api/orders", orderRoute);
+
 const razorpay = new Razorpay({
   key_id: 'rzp_test_cLK4B8WKJo7zsZ',
   key_secret: '7vrVSt7ygksy8jI3YCCl8KYt',
@@ -56,27 +57,6 @@ app.post('/api/carts', async (req, res) => {
   }
 });
 
-// app.post('/api/carts', async (req, res) => {
-  
-//   const { total } = req.body;
-
-//   if (!Number.isInteger(total) || amount < 100) { // Ensure at least 1 rupee (100 paisa)
-//     return res.status(400).send({ error: 'Invalid amount' });
-//   }
-
-//   const options = {
-//     total,
-//     currency: 'INR',
-//   };
-
-//   try {
-//     const order = await razorpay.orders.create(options);
-//     res.json(order);
-//     console.log(order);
-//   } catch (error) {
-//     res.status(500).send(error);
-//   }
-// });
 
 
 const port = process.env.PORT || 5000;

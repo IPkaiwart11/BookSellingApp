@@ -108,4 +108,49 @@ router.get("/", async (req, res) => {
   }
 });
 
+/////////////
+// Endpoint to add a review
+router.post('/:_id', async (req, res) => {
+  const productId  = req.params;
+  const { userId, rating, comment } = req.body;
+// console.log("productId:", productId);
+  try {
+    const product = await Product.findById(productId);
+    if (!product) {
+      return res.status(404).json({ message: 'Book not found' });
+    }
+
+    const review = {
+      user: userId,
+      rating,
+      comment,
+    };
+
+    product.reviews.push(review);
+    await product.save();
+
+    res.json(product);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+/////////
+// Endpoint to fetch reviews
+router.get('/:_id', async (req, res) => {
+  const  productId  = req.params;
+  console.log("productId:", productId);
+  try {
+    const product = await Product.findById(productId).populate('reviews.user', 'name'); // Populate user details if necessary
+    if (!product) {
+      return res.status(404).json({ message: 'Book not found' });
+    }
+
+    res.json(product.reviews);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+//////
+
 module.exports = router;
