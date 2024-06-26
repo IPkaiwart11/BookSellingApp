@@ -10,6 +10,7 @@ import ButtonBase from '@mui/material/ButtonBase';
 import { useSelector } from "react-redux";
 import { BASE_URL } from "../url";
 import Skeleton from '@mui/material/Skeleton';
+import { NavLink } from "react-router-dom";
 
 const Img = styled('img')({
   margin: 'auto',
@@ -115,6 +116,18 @@ export default function Order() {
           <Typography sx={{ cursor: 'pointer' }} >
             <b>Total: Rs {order.total}</b>
           </Typography>
+          <NavLink to={'/tracking/' + order._id}>
+          <Typography sx={{ cursor: 'pointer' }} >
+            <b>Trace Order</b>
+          </Typography>
+          </NavLink>
+           {/* <NavLink 
+           to={'/update-tracking/' + order._id}
+>
+  <Typography sx={{ cursor: 'pointer' }}>
+    <b>Update Order</b>
+  </Typography>
+</NavLink> */}
         </Grid>
         )}
       </Grid>

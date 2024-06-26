@@ -11,6 +11,8 @@ import Success from "./pages/Success";
 import { useSelector } from "react-redux";
 import PaymentPage from "./pages/PaymentPage";
 import MyProfile from "./pages/MyProfile";
+import TrackingForm from "./components/TrackingForm";
+import TrackingInfo from "./components/TrackingInfo";
 
 const App = () => {
   const user = useSelector((state) => state.user.currentUser);
@@ -27,6 +29,8 @@ const App = () => {
           <Route path="/success" element={<Success />} />
           <Route path="/myorder" element={<Myorder />} />
           <Route path="/myprofile" element={<MyProfile/>} />
+          <Route path="/update-tracking/:id" element={<TrackingForm/>} />
+          <Route path="/tracking/:id" element={<TrackingInfo/>} />
         </>
       ) : (
         <>

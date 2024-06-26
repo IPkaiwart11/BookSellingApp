@@ -10,6 +10,8 @@ import { publicRequest } from "../requestMethods";
 import { addProduct } from "../redux/cartRedux";
 import { useDispatch } from "react-redux";
 import { v4 as uuidv4 } from 'uuid';
+import ReviewForm from "../components/ReviewForm";
+import ReviewList from "../components/ReviewList";
 
 const Container = styled.div``;
 
@@ -183,6 +185,7 @@ const [language, setLanguage] = useState(product.language && product.language.le
           <Title>{product.title}</Title>
           <Desc>{product.desc}</Desc>
           <Price>Rs {product.price}</Price>
+         
           <FilterContainer>
             
             <Filter>
@@ -204,12 +207,7 @@ const [language, setLanguage] = useState(product.language && product.language.le
              </FilterContainer>
              <FilterContainer>
             <Filter>
-              {/* <FilterTitle>Language</FilterTitle> */}
-              {/* <FilterLanguage onChange={(e) => setLanguage(e.target.value)}>
-                {product.language?.map((s) => (
-                  <FilterLanguageOption key={s}>{s}</FilterLanguageOption>
-                ))}
-              </FilterLanguage> */}
+              
               <FilterLanguage onChange={(e) => setLanguage(e.target.value)}>
   <option disabled selected value="">Select Language</option>
   {product.language?.map((s) => (
@@ -227,7 +225,12 @@ const [language, setLanguage] = useState(product.language && product.language.le
             </AmountContainer>
             <Button onClick={handleClick}>ADD TO CART</Button>
           </AddContainer>
+          
+          <ReviewList bookId={id} />
+          <hr />
+          <ReviewForm bookId={id} />
         </InfoContainer>
+        
       </Wrapper>
       {/* <Newsletter /> */}
      
