@@ -29,10 +29,10 @@ const ListItem = styled.li`
   padding: 10px 0;
 `;
 
-const UserName = styled.p`
-  font-weight: bold;
-  margin: 0;
-`;
+// const UserName = styled.p`
+//   font-weight: bold;
+//   margin: 0;
+// `;
 
 const ReviewComment = styled.p`
   margin: 5px 0;
