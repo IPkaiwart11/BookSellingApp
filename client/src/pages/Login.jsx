@@ -108,7 +108,7 @@ export default function Login() {
                 margin="normal"
                 required
                 fullWidth
-                id="email"
+                id="username"
                 label="User name"
                 autoFocus
                 placeholder="username"
