@@ -46,7 +46,7 @@ const ReviewDate = styled.p`
 
 const ReviewList = ({ bookId }) => {
   const [reviews, setReviews] = useState([]);
-
+console.log(bookId);
   useEffect(() => {
     const fetchReviews = async () => {
       try {
