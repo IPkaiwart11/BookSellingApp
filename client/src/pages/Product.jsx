@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import { v4 as uuidv4 } from 'uuid';
 import ReviewForm from "../components/ReviewForm";
 import ReviewList from "../components/ReviewList";
+import CustomizedSnackbar from "../components/CustomizedSnackbar";
 
 const Container = styled.div``;
 
@@ -64,10 +65,10 @@ const Filter = styled.div`
   align-items: center;
 `;
 
-const FilterTitle = styled.span`
-  font-size: 20px;
-  font-weight: 200;
-`;
+// const FilterTitle = styled.span`
+//   font-size: 20px;
+//   font-weight: 200;
+// `;
 
 const FilterTypeOfBook = styled.select`
   width: 150px;
@@ -140,6 +141,7 @@ const Product = () => {
   const id = location.pathname.split("/")[2];
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
   // const [typeOfBook, setTypeOfBook] = useState({});
   // const [language, setLanguage] = useState([]);
   const [typeOfBook, setTypeOfBook] = useState(product.typeOfBook && product.typeOfBook.length > 0 ? product.typeOfBook[0] : '');
@@ -164,12 +166,19 @@ const [language, setLanguage] = useState(product.language && product.language.le
       setQuantity(quantity + 1);
     }
   };
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
 
+    setOpenSnackbar(false);
+  };
   const handleClick = () => {
     const uniqueId = uuidv4();
     dispatch(
       addProduct({ ...product,typeOfBook,language, quantity,id: uniqueId })
     );
+    setOpenSnackbar(true);
   };
   return (
     <> 
@@ -225,7 +234,7 @@ const [language, setLanguage] = useState(product.language && product.language.le
             </AmountContainer>
             <Button onClick={handleClick}>ADD TO CART</Button>
           </AddContainer>
-          
+          <CustomizedSnackbar open={openSnackbar} close={handleClose}/>
           <ReviewList bookId={id} />
           <hr />
           <ReviewForm bookId={id} />

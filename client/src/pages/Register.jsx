@@ -16,9 +16,9 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from "react";
-import styled from "styled-components";
+// import styled from "styled-components";
 import { register } from "../redux/apiCalls";
-import { mobile } from "../responsive";
+// import { mobile } from "../responsive";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
@@ -30,7 +30,7 @@ function Copyright(props) {
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        THE BOOKSHELF
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}

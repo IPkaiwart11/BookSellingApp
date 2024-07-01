@@ -36,6 +36,7 @@ const Search = styled('div')(({ theme }) => ({
   },
 }));
 
+
 const SearchIconWrapper = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 2),
   height: '100%',
@@ -105,7 +106,7 @@ export default function PrimarySearchAppBar() {
       <NavLink to='/myprofile'>
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       </NavLink>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      {/* <MenuItem onClick={handleMenuClose}>My account</MenuItem> */}
     </Menu>
   );
 
@@ -170,7 +171,11 @@ export default function PrimarySearchAppBar() {
       </MenuItem>
       </NavLink>
 
-<NavLink to='/myprofile'>
+<NavLink 
+to='/myprofile'
+style={{ textDecoration: 'none' }} 
+
+>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           size="large"
