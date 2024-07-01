@@ -19,8 +19,8 @@ mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopol
 
 app.use(
   cors({
-    // origin: 'https://ipbookstore.vercel.app', // Change this to specific origin in production
-    origin: 'http://localhost:3000',
+    origin: 'https://ipbookstore.vercel.app', // Change this to specific origin in production
+    // origin: 'http://localhost:3000',
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'HEAD', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'token'],
